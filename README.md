@@ -191,5 +191,6 @@ Kontribusi selalu diterima! Berikut cara Anda dapat berkontribusi:
 5. Buka Pull Request
 
 ---
+---
 
 ⭐️ Dibuat dengan ❤️ oleh [Anak UMKT](https://github.com/ItsAltoo)
