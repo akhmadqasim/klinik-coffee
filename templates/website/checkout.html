@@ -1,0 +1,110 @@
+{% extends 'website/component/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+    <div class="top_panel_title top_panel_style_3 title_present breadcrumbs_present scheme_original">
+        <div class="top_panel_title_inner top_panel_inner_style_3 title_present_inner breadcrumbs_present_inner breadcrumbs_7">
+            <div class="content_wrap">
+                <h1 class="page_title">Checkout</h1>
+                <div class="breadcrumbs">
+                    <a class="breadcrumbs_item home" href="{% url 'home' %}">Home</a>
+                    <span class="breadcrumbs_delimiter"></span>
+                    <a class="breadcrumbs_item" href="{% url 'view_cart' %}">Cart</a>
+                    <span class="breadcrumbs_delimiter"></span>
+                    <span class="breadcrumbs_item current">Checkout</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_wrap page_paddings_yes">
+        <div class="content_wrap">
+            <div class="content">
+                <article class="post_item post_item_single post_featured_default post_format_standard page hentry">
+                    <section class="post_content">
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                <div class="vc_column-inner ">
+                                    <div class="wpb_wrapper">
+                                        <h2 class="sc_title sc_title_regular sc_align_center margin_bottom_small">Checkout</h2>
+                                        <div class="sc_section">
+                                            <div class="sc_section_inner">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                    <div class="wpb_wrapper">
+                                                        {% if cart_items %}
+                                                            <div class="woocommerce">
+                                                                <div class="col2-set" id="customer_details">
+                                                                    <div class="col-1">
+                                                                        <div class="woocommerce-billing-fields">
+                                                                            <h3>Customer Details</h3>
+                                                                            <form method="post" action="{% url 'checkout' %}">
+                                                                                {% csrf_token %}
+                                                                                <p class="form-row form-row-wide">
+                                                                                    <label for="name">Name <span class="required">*</span></label>
+                                                                                    <input type="text" class="input-text" name="name" id="name" required>
+                                                                                </p>
+                                                                                <p class="form-row form-row-wide">
+                                                                                    <label for="phone">Phone <span class="required">*</span></label>
+                                                                                    <input type="text" class="input-text" name="phone" id="phone" required>
+                                                                                </p>
+                                                                                <h3 id="order_review_heading">Your Order</h3>
+                                                                                <div id="order_review" class="woocommerce-checkout-review-order">
+                                                                                    <table class="shop_table woocommerce-checkout-review-order-table">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th class="product-name">Product</th>
+                                                                                                <th class="product-total">Total</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            {% for item in cart_items %}
+                                                                                                <tr class="cart_item">
+                                                                                                    <td class="product-name">
+                                                                                                        {{ item.product.name }} <strong class="product-quantity">× {{ item.quantity }}</strong>
+                                                                                                    </td>
+                                                                                                    <td class="product-total">
+                                                                                                        <span class="amount">Rp{{ item.total_price|intcomma }}</span>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            {% endfor %}
+                                                                                        </tbody>
+                                                                                        <tfoot>
+                                                                                            <tr class="cart-subtotal">
+                                                                                                <th>Subtotal</th>
+                                                                                                <td><span class="amount">Rp{{ cart_total|intcomma }}</span></td>
+                                                                                            </tr>
+                                                                                            <tr class="order-total">
+                                                                                                <th>Total</th>
+                                                                                                <td><strong><span class="amount">Rp{{ cart_total|intcomma }}</span></strong></td>
+                                                                                            </tr>
+                                                                                        </tfoot>
+                                                                                    </table>
+                                                                                    <div id="payment" class="woocommerce-checkout-payment">
+                                                                                        <div class="form-row place-order">
+                                                                                            <button type="submit" class="button alt" id="place_order">Place Order</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% else %}
+                                                            <p>Your cart is empty.</p>
+                                                            <a href="{% url 'menu' %}" class="button">Continue Shopping</a>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}

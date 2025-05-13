@@ -1,0 +1,79 @@
+{% load static %}
+{% load humanize %}
+
+<header class="top_panel_wrap top_panel_style_3 scheme_original">
+    <div class="top_panel_wrap_inner top_panel_inner_style_3 top_panel_position_above">
+        <div class="top_panel_middle">
+            <div class="content_wrap">
+                <div class="contact_logo">
+                    <div class="logo">
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'website/images/logo.png' %}" class="logo_main" alt="" width="128"
+                                 height="124">
+                            <img src="{% static 'website/images/alternative-logo.png' %}" class="logo_fixed" alt=""
+                                 width="161" height="47">
+                        </a>
+                    </div>
+                </div>
+                <div class="menu_main_wrap">
+                    <a href="#" class="menu_main_responsive_button icon-menu"></a>
+                    <nav class="menu_main_nav_area">
+                        <ul id="menu_main" class="menu_main_nav">
+                            <li class="menu-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="menu-item"><a href="{% url 'menu' %}">Menu</a></li>
+                            <li class="menu-item"><a href="{% url 'view_cart' %}">Cart</a></li>
+                            <li class="menu-item"><a href="{% url 'checkout' %}">Checkout</a></li>
+                        </ul>
+                    </nav>
+                    <div class="contact_cart">
+                        <a href="{% url 'view_cart' %}" class="top_panel_cart_button" data-items="{{ cart_count|default:'0' }}" data-summa="Rp{{ cart_total|default:'0' }}">
+                            <span class="contact_icon icon-shopping"></span>
+                            <span class="contact_label contact_cart_label">Your cart:</span>
+                            <span class="contact_cart_totals">
+                                <span class="cart_items">{{ cart_count|default:'0' }} Items</span> -
+                                <span class="cart_summa">Rp{{ cart_total|default:'0' }}</span>
+                            </span>
+                        </a>
+                        <ul class="widget_area sidebar_cart sidebar">
+                            <li>
+                                <div class="widget woocommerce widget_shopping_cart">
+                                    <div class="hide_cart_widget_if_empty">
+                                        <div class="widget_shopping_cart_content">
+                                            <ul class="cart_list product_list_widget">
+                                                {% if cart_items %}
+                                                    {% for item in cart_items %}
+                                                        <li class="cart_item">
+                                                            <a href="#" class="remove-item" data-product-id="{{ item.product.id }}">×</a>
+                                                            <a href="#">
+                                                                {% if item.product.image %}
+                                                                    <img width="60" height="60" alt="" src="{{ item.product.image.url }}">
+                                                                {% else %}
+                                                                    <img width="60" height="60" alt="" src="{% static 'website/images/2000x2000.png' %}">
+                                                                {% endif %}
+                                                                {{ item.product.name }}
+                                                            </a>
+                                                            <span class="quantity">{{ item.quantity }} × <span class="amount">Rp{{ item.product.price|intcomma }}</span></span>
+                                                        </li>
+                                                    {% endfor %}
+                                                    <li class="total">
+                                                        <strong>Total:</strong> <span class="amount">Rp{{ cart_total|intcomma }}</span>
+                                                    </li>
+                                                    <li class="buttons">
+                                                        <a href="{% url 'view_cart' %}" class="button">View Cart</a>
+                                                        <a href="{% url 'checkout' %}" class="button checkout">Checkout</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="empty">No products in the cart.</li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

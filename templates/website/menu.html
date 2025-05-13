@@ -1,0 +1,210 @@
+{% extends 'website/component/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+    <div class="top_panel_title top_panel_style_3 title_present breadcrumbs_present scheme_original">
+        <div class="top_panel_title_inner top_panel_inner_style_3 title_present_inner breadcrumbs_present_inner breadcrumbs_7">
+            <div class="content_wrap">
+                <h1 class="page_title">Menu</h1>
+                <div class="breadcrumbs">
+                    <a class="breadcrumbs_item home" href="{% url 'home' %}">Home</a>
+                    <span class="breadcrumbs_delimiter"></span>
+                    <span class="breadcrumbs_item current">Menu</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_wrap page_paddings_yes">
+        <div class="content_wrap">
+            <div class="content">
+                <article class="post_item post_item_single post_featured_default post_format_standard page hentry">
+                    <section class="post_content">
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                <div class="vc_column-inner ">
+                                    <div class="wpb_wrapper">
+                                        <h2 class="sc_title sc_title_regular sc_align_center margin_bottom_small">Our
+                                            Menu</h2>
+                                        <div class="sc_section aligncenter">
+                                            <div class="sc_section_inner">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                    <div class="wpb_wrapper">
+                                                        <p>
+                                                            From the freshest ingredients to the most delicious recipes,
+                                                            we
+                                                            have everything you need to make your meal a success. Our
+                                                            menu is
+                                                            designed to cater to all tastes and preferences, with a wide
+                                                            variety of options to choose from. Whether you're in the
+                                                            mood for
+                                                            something light and healthy or something indulgent and
+                                                            decadent.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cart-summary aligncenter margin_bottom_medium">
+                                            <a href="{% url 'view_cart' %}" class="button">
+                                                <span class="icon-shopping"></span> View Cart ({{ cart_count }} items - Rp{{ cart_total|intcomma }})
+                                            </a>
+                                        </div>
+                                        <div id="sc_tabs_730" class="sc_tabs sc_tabs_style_2 margin_top_large"
+                                             data-active="0">
+                                            <ul class="sc_tabs_titles">
+                                                <li class="sc_tabs_title">
+                                                    <a href="#default" class="theme_button"
+                                                       id="default_tab">All</a>
+                                                </li>
+                                                {% for category in category_list %}
+                                                    <li class="sc_tabs_title">
+                                                        <a href="#{{ category.name }}" class="theme_button"
+                                                           id="{{ category.name }}_tab">{{ category.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                            <div id="default" class="sc_tabs_content">
+                                                <div id="sc_menuitems_347_wrap" class="sc_menuitems_wrap">
+                                                    <div id="sc_menuitems_347"
+                                                         class="sc_menuitems sc_menuitems_style_menuitems-1 sc_slider_nopagination sc_slider_nocontrols margin_top_medium"
+                                                         data-interval="7492" data-slides-per-view="2">
+                                                        <div class="sc_columns columns_wrap">
+                                                            {% for product in menu_list %}
+                                                                <div class="column-1_2 column_padding_bottom">
+                                                                    <div id="sc_menuitems_347_1"
+                                                                         class="sc_menuitems_item sc_menuitems_item_1"
+                                                                         data-product-id="{{ product.id }}">
+                                                                        <div class="sc_menuitem_image">
+                                                                            {% if product.image %}
+                                                                                <img width="90" height="90"
+                                                                                     alt=""
+                                                                                     src="{{ product.image.url }}">
+                                                                            {% else %}
+                                                                                <img width="90" height="90"
+                                                                                     alt=""
+                                                                                     src="{% static 'website/images/2000x2000.png' %}">
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="sc_menuitem_price">
+                                                                            Rp{{ product.price|intcomma }}</div>
+                                                                        <div class="sc_menuitem_title">
+                                                                            {{ product.name }}
+                                                                        </div>
+                                                                        <div class="sc_menuitem_description">{{ product.category }}
+                                                                        </div>
+                                                                        <div class="sc_menuitem_cart">
+                                                                            <a href="#" class="add-to-cart-button button" data-product-id="{{ product.id }}">
+                                                                                <span class="icon-shopping"></span> Add to Cart
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% for category in category_list %}
+                                                <div id="{{ category.name }}" class="sc_tabs_content">
+                                                    <div id="sc_menuitems_887_wrap" class="sc_menuitems_wrap">
+                                                        <div id="sc_menuitems_887"
+                                                             class="sc_menuitems sc_menuitems_style_menuitems-1 sc_slider_nopagination sc_slider_nocontrols margin_top_medium"
+                                                             data-interval="6434" data-slides-per-view="2">
+                                                            <div class="sc_columns columns_wrap">
+                                                                {% for product in menu_list %}
+                                                                    {% if product.category.name == category.name %}
+                                                                        <div class="column-1_2 column_padding_bottom">
+                                                                            <div id="sc_menuitems_347_1"
+                                                                                 class="sc_menuitems_item sc_menuitems_item_1"
+                                                                                 data-product-id="{{ product.id }}">
+                                                                                <div class="sc_menuitem_image">
+                                                                                    {% if product.image %}
+                                                                                        <img width="90"
+                                                                                             height="90"
+                                                                                             alt=""
+                                                                                             src="{{ product.image.url }}">
+                                                                                    {% else %}
+                                                                                        <img width="90"
+                                                                                             height="90"
+                                                                                             alt=""
+                                                                                             src="{% static 'website/images/2000x2000.png' %}">
+                                                                                    {% endif %}
+                                                                                </div>
+                                                                                <div class="sc_menuitem_price">
+                                                                                    Rp{{ product.price|intcomma }}</div>
+                                                                                <div class="sc_menuitem_title">
+                                                                                    {{ product.name }}
+                                                                                </div>
+                                                                                <div class="sc_menuitem_description">{{ product.category }}
+                                                                                </div>
+                                                                                <div class="sc_menuitem_cart">
+                                                                                    <a href="#" class="add-to-cart-button button" data-product-id="{{ product.id }}">
+                                                                                        <span class="icon-shopping"></span> Add to Cart
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="cart-summary aligncenter margin_top_medium">
+                                            <a href="{% url 'checkout' %}" class="button alt">
+                                                <span class="icon-right"></span> Proceed to Checkout
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+                <section class="related_wrap related_wrap_empty"></section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type='text/javascript' src="{% static 'website/js/vendor/ui/widget.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'website/js/vendor/ui/tabs.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'website/js/vendor/ui/effect.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'website/js/vendor/ui/effect-fade.min.js' %}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            // Add to cart functionality
+            $('.add-to-cart-button').on('click', function(e) {
+                e.preventDefault();
+                var productId = $(this).data('product-id');
+
+                $.ajax({
+                    url: '{% url "add_to_cart" 0 %}'.replace('0', productId),
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            // Update cart count and total
+                            $('.cart_items').text(data.cart_count + ' Items');
+                            $('.cart_summa').text('Rp' + data.cart_total);
+
+                            // Update cart summary on menu page
+                            $('.cart-summary .button').first().html(
+                                '<span class="icon-shopping"></span> View Cart (' + data.cart_count + ' items - Rp' + data.cart_total + ')'
+                            );
+
+                            // Show success message
+                            alert(data.message);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

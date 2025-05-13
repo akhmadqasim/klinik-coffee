@@ -1,0 +1,67 @@
+/* Booked Appointments
+------------------------------------------------------------------------------------ */
+body table.booked-calendar th .monthName a {
+	color: #453e3c;
+    letter-spacing: 0.05px;
+}
+body table.booked-calendar thead th {
+    color: #453e3c !important;
+    padding: 1em 0 2em;
+}
+body table.booked-calendar thead th .monthName {
+    font-size: 1.667em;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+}
+body table.booked-calendar tr.days th {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    text-transform: none !important;
+    padding: 7px 0 6px !important;
+}
+body table.booked-calendar td.prev-date .date, body table.booked-calendar td.prev-date:hover .date {
+    background: #fff !important;
+    color: #d2d1d1 !important;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+body table.booked-calendar td {
+    border: 1px solid #eae4ce !important;
+}
+body table.booked-calendar td.blur .date, body table.booked-calendar td.blur:hover .date {
+    background: #fbfaf8 !important;
+    color: #555555 !important;
+}
+body table.booked-calendar td {
+    color: #555555 !important;
+}
+body table.booked-calendar thead th .page-right, body table.booked-calendar thead th .page-left {
+    color: #ecebeb !important;
+}
+body table.booked-calendar tr.entryBlock {
+    background: #555555 !important;
+}
+body table.booked-calendar tr.entryBlock td {
+    border-bottom-color: #eae4ce !important;
+    padding: 2px !important;
+}
+body table.booked-calendar .booked-appt-list .timeslot .timeslot-time {
+    color: #a6a19f;
+    font-weight: 400;
+    font-size: 16px;
+}
+body table.booked-calendar .booked-appt-list .timeslot .spots-available {
+    color: #a6a19f;
+    font-size: 16px;
+    line-height: inherit;
+    text-transform: none;
+}
+body table.booked-calendar .booked-appt-list .timeslot .timeslot-people button[disabled], body table.booked-calendar .booked-appt-list .timeslot .timeslot-people button[disabled]:hover,
+body #booked-profile-page input.button-primary[type="submit"]:hover,
+body table.booked-calendar input.button-primary[type="submit"]:hover,
+body .booked-modal input.button-primary[type="submit"]:hover,
+body table.booked-calendar .booked-appt-list .timeslot .timeslot-people button:hover {
+    color: #453e3c !important;
+    border-color: #453e3c !important;
+    background: transparent !important;
+}
