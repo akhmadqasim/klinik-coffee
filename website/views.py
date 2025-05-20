@@ -6,7 +6,10 @@ import uuid
 import midtransclient
 
 from dashboard.models import Product, Category, CartItem, Customer, Transaction
-from settings import MIDTRANS_CLIENT_KEY, MIDTRANS_SERVER_KEY
+from django.conf import settings
+
+MIDTRANS_SERVER_KEY = settings.MIDTRANS_SERVER_KEY
+MIDTRANS_CLIENT_KEY = settings.MIDTRANS_CLIENT_KEY
 
 snap = midtransclient.Snap(
     is_production=False,
