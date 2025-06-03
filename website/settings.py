@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,9 +85,9 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "klinik_cafe",
         'USER': 'root',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        
+        'PASSWORD': 'admin123',
+        'HOST': 'localhost', 
+        'PORT': '3307',
     }
 }
 
